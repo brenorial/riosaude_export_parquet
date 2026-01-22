@@ -45,5 +45,8 @@ Digite o nome do arquivo parquet (sem extensão):
 ```
 
 #### 5) Arquivo gerado
-O arquivo é então gerado e armazenado em `output/`
+O arquivo é então gerado e armazenado em `output/`.
+
+
+
 ---
