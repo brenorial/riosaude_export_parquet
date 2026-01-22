@@ -12,61 +12,38 @@ com suporte a **chunks** para evitar estouro de memória.
 
 ---
 
-## Setup
+## Como rodar 
+
+#### 1) Instale o poetry
 
 ```bash
 poetry install
 cp .env.example .env
-# edite o .env com as credenciais
 ```
 
----
-
-## Como rodar
-
-A query fica em `queries/irs_fat_boletim.sql` (você pode trocar por outra).
+#### 2) Crie um arquivo `.env` com as variáveis do banco. 
 
 ```bash
-poetry run python -m export_parquet.pipeline
+sed 's/=.*$/=/' .env.example > .env
 ```
 
-O arquivo será gerado em:
+#### 3) Digite a query
 
-- `output/irs_fat_boletim_2025.parquet`
+A query fica em `queries/query.sql`
+Rode 
 
----
-
-## Onde você altera a query e parâmetros
-
-Abra `export_parquet/main.py` e ajuste:
-
-- `SQL_PATH` (arquivo .sql)
-- `OUT_PATH` (arquivo de saída)
-- `PARAMS` (parâmetros usados na query)
-- `CHUNKSIZE` (tamanho do chunk; use `None` para carregar tudo)
-- `COMPRESSION` (snappy/gzip/zstd...)
-
----
-
-## Exemplo de SQL com parâmetro
-
-No seu `.sql`:
-
-```sql
-SELECT *
-FROM riosaude.irs_fat_boletim
-WHERE data_entrada >= :data_min
+```bash
+poetry run python -m pipeline.py
 ```
+#### 4) Rode o código
 
-No `main.py`:
+Ao rodar o código, digite o nome do arquivo parquet no terminal. 
 
-```python
-PARAMS = {"data_min": "2025-01-01"}
+```bash
+$ poetry run python pipeline.py
+Digite o nome do arquivo parquet (sem extensão): 
 ```
-
 ---
 
-## Segurança
-
-- `.env` está no `.gitignore`
-- não commite credenciais
+#### 5) Arquivo gerado
+O arquivo é então gerado e armazenado em `output/`
