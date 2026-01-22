@@ -43,7 +43,7 @@ Ao rodar o código, digite o nome do arquivo parquet no terminal.
 $ poetry run python pipeline.py
 Digite o nome do arquivo parquet (sem extensão): 
 ```
----
 
 #### 5) Arquivo gerado
 O arquivo é então gerado e armazenado em `output/`
+---
