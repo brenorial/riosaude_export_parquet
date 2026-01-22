@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "export-parquet"
+version = "0.2.1"
+description = "Exporta o resultado de uma query SQL para Parquet (sem CLI)."
+authors = ["Breno Almeida <breno@example.com>"]
+readme = "README.md"
+packages = [{ include = "export_parquet" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4.0"
+python-dotenv = "^1.0.1"
+sqlalchemy = "^2.0.30"
+psycopg = {version = "^3.2.1", extras = ["binary"]}
+pandas = "^2.2.2"
+pyarrow = "^17.0.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.9"
+mypy = "^1.11.2"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
